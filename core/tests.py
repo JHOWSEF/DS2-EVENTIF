@@ -1,6 +1,7 @@
 from django.test import TestCase
 
 
+
 class HomeTest(TestCase):
     def setUp(self):
         self.response = self.client.get('/')
