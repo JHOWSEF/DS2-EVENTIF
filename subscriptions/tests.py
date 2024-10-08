@@ -3,6 +3,7 @@ from django.core import mail
 from subscriptions.forms import SubscriptionForm
 
 
+
 class SubscribeTest(TestCase):
     def setUp(self):
         self.response = self.client.get('/inscricao/')
