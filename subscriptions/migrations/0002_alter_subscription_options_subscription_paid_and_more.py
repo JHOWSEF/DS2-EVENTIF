@@ -43,4 +43,10 @@ class Migration(migrations.Migration):
             name="phone",
             field=models.CharField(max_length=20, verbose_name="telefone"),
         ),
+
+        migrations.AddField(
+            model_name="subscription",
+            name="paid",
+            field=models.BooleanField(default=False),
+        ),
     ]

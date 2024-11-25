@@ -6,7 +6,7 @@ class Migration(migrations.Migration):
     ]
     operations = [
         migrations.AlterField(
-            model_name="subscription",
+            model_name="Subscription",
             name="paid",
             field=models.BooleanField(default=False, verbose_name="pago"),
         ),
