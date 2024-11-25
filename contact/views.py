@@ -4,6 +4,7 @@ from django.template.loader import render_to_string
 from django.contrib import messages
 from django.conf import settings
 from contact.forms import ContactForm
+from django.core import mail
 
 def contact(request):
     if request.method == 'POST':
@@ -24,7 +25,7 @@ def create(request):
         'Novo Contato!',
         settings.DEFAULT_FROM_EMAIL,
         form.cleaned_data['email'])
-        
+
     messages.success(request, 'Envio de contato realizado com sucesso!')
     return HttpResponseRedirect('/contato/')
 
