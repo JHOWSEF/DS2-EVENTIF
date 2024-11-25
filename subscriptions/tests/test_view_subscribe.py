@@ -39,7 +39,8 @@ class SubscribePostValid(TestCase):
         self.resp = self.client.post('/inscricao/', data)
 
     def test_post(self):
-       self.assertRedirects(self.resp, '/inscricao/1/')
+        self.assertRedirects(self.resp, '/inscricao/1/')
+
 
     def test_send_subscription_email(self):
         self.assertEqual(1, len(mail.outbox))
@@ -69,3 +70,6 @@ class SubscribePostInvalid(TestCase):
 
     def test_dont_save_subscription(self):
         self.assertFalse(Subscription.objects.exists())
+
+
+
