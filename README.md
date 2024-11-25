@@ -13,9 +13,9 @@ Sistema de evento encomendado pela direção do campus Rio Grande
 
 ```console
 git clone https://github.com/JHOWSEF/DS2-EVENTIF
-cd eventif
-python -m venv .eventif
-source .eventif/bin/activate
+cd DS2-EVENTIF
+python -m venv .DS2-EVENTIF
+source .DS2-EVENTIF/bin/activate
 pip install -r requirements-dev.txt
 cp contrib/env-sample .env
 python manage.py test
