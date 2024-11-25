@@ -1,4 +1,4 @@
-.eventif
+.DS2-EVENTIF
 .python-version
 *.sqlite3
 __pycache__
