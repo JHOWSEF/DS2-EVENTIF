@@ -44,8 +44,8 @@ def detail(request, pk):
     except Subscription.DoesNotExist:
         raise Http404
     return render(request,
-                  'subscriptions/subscription_detail.html',
-                  {'subscription': subscription})
+                'subscriptions/subscription_detail.html',
+                {'subscription': subscription})
 
 
 def _send_mail(template_name, context, subject, from_, to):
