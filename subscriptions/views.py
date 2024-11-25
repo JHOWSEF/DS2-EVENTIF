@@ -18,12 +18,12 @@ def subscribe(request):
 def create(request):
     form = SubscriptionForm(request.POST)
 
- if not form.is_valid():
+    if not form.is_valid():
         return render(request, 'subscriptions/subscription_form.html', {'form': form})
 
         subscription = Subscription.objects.create(**form.cleaned_data)
 
-         _send_mail(
+        _send_mail(
             'subscriptions/subscription_email.txt',
             {'subscription': subscription},
             'Confirmação de inscrição!',
