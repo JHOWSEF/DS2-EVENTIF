@@ -92,8 +92,9 @@ class ContactEmailPostValid(TestCase):
         self.assertEqual(expect, self.email.subject)
 
     def test_contact_email_from(self):
-        expect = 'contato@eventif.com.br'
+        expect = 'contato@eventif.com.br' 
         self.assertEqual(expect, self.email.from_email)
+
 
     def test_contact_email_to(self):
         expect = ['contato@eventif.com.br', 'jfmarques0909.shadow@gmail.com']
