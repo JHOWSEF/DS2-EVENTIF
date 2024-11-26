@@ -6,9 +6,9 @@ from subscriptions.models import Subscription
 class SubscriptionModelTest(TestCase):
     def setUp(self):
         self.obj = Subscription(
-            name='Eduardo',
+            name='JosÉ Filipe',
             cpf='12345678901',
-            email='dudupires04@gmail.com',
+            email='jfmarques0909.shadow@gmail.com',
             phone='53-12345-6789'
         )
         self.obj.save()

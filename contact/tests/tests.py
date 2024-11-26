@@ -39,7 +39,7 @@ class ContactPostValid(TestCase):
     def setUp(self):
         self.data = {
             'name': 'José Filipe',
-            'email': 'jose.filipe.gomes@aluno.riogrande.ifrs.edu.br',
+            'email': 'jfmarques0909.shadow@gmail.com',
             'phone':'53-12345-6789',
             'message': 'Mensagem de teste'
         }
@@ -82,7 +82,7 @@ class ContactPostInvalid(TestCase):
 class ContactEmailPostValid(TestCase):
 
     def setUp(self):
-        data = dict(name="José Filipe", email='jose.filipe.gomes@aluno.riogrande.ifrs.edu.br', phone='53-12345-6789',
+        data = dict(name="José Filipe", email='jfmarques0909.shadow@gmail.com', phone='53-12345-6789',
         message='mensagem teste')
         self.client.post('/contato/', data)
         self.email = mail.outbox[0]
@@ -96,13 +96,13 @@ class ContactEmailPostValid(TestCase):
         self.assertEqual(expect, self.email.from_email)
 
     def test_contact_email_to(self):
-        expect = ['contato@eventif.com.br', 'jose.filipe.gomes@aluno.riogrande.ifrs.edu.br']
+        expect = ['contato@eventif.com.br', 'jfmarques0909.shadow@gmail.com']
         self.assertEqual(expect, self.email.to)
 
     def test_contact_email_body(self):
         contents = (
             'José Filipe',
-            'jose.filipe.gomes@aluno.riogrande.ifrs.edu.br',
+            'jfmarques0909.shadow@gmail.com',
             '53-12345-6789',
             'mensagem teste'
         )
