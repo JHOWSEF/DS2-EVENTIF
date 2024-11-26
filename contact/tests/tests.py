@@ -1,6 +1,8 @@
 from django.test import TestCase
 from django.core import mail
+from django.core.mail import send_mail
 from contact.forms import ContactForm
+from contact.models import ContactModel
 
 class ContactGet(TestCase):
 
@@ -35,15 +37,23 @@ class ContactGet(TestCase):
 class ContactPostValid(TestCase):
     
     def setUp(self):
-        data = dict(name="José Filipe", email='jose.filipe.gomes@aluno.riogrande.ifrs.edu.br', phone='53-12345-6789', 
-        message='message...')
-        self.resp = self.client.post('/contato/', data)
+        self.data = {
+            'name': 'José Filipe',
+            'email': 'jose.filipe.gomes@aluno.riogrande.ifrs.edu.br',
+            'phone':'53-12345-6789',
+            'message': 'Mensagem de teste'
+        }
+        # Simula um POST para a URL de contato
+        self.resp = self.client.post('/contato/', self.data)
 
     def test_post(self):
         self.assertRedirects(self.resp, '/contato/')
 
     def test_send_contact_email(self):
         self.assertEqual(1, len(mail.outbox))
+    
+    def test_save_contact(self):
+        self.assertFalse(ContactModel.objects.exists())
 
 
 
@@ -73,7 +83,7 @@ class ContactEmailPostValid(TestCase):
 
     def setUp(self):
         data = dict(name="José Filipe", email='jose.filipe.gomes@aluno.riogrande.ifrs.edu.br', phone='53-12345-6789',
-        message='aaaaabbbbbcccc123')
+        message='mensagem teste')
         self.client.post('/contato/', data)
         self.email = mail.outbox[0]
 
@@ -92,9 +102,9 @@ class ContactEmailPostValid(TestCase):
     def test_contact_email_body(self):
         contents = (
             'José Filipe',
-            '53-12345-6789',
             'jose.filipe.gomes@aluno.riogrande.ifrs.edu.br',
-            'aaaaabbbbbcccc123'
+            '53-12345-6789',
+            'mensagem teste'
         )
         for content in contents:
             with self.subTest():

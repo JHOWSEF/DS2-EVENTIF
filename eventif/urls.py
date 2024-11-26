@@ -17,11 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from core.views import home
+from subscriptions.views import subscribe
 from contact.views import contact
+from subscriptions.views import subscribe, detail
 
 urlpatterns = [
+    path('', home),
+    path('inscricao/', subscribe), 
+    path('inscricao/<int:pk>/', detail),
     path('', home, name='home'),
     path('inscricao/', include('subscriptions.urls')),
-    path('contato/', contact),
+    path('contato/', contact),  
     path('admin/', admin.site.urls),
 ]
