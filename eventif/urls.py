@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from core.views import home
+from core.views import home, speaker_detail
 from subscriptions.views import subscribe
 from contact.views import contact
 from subscriptions.views import subscribe, detail
@@ -28,5 +28,6 @@ urlpatterns = [
     path('', home, name='home'),
     path('inscricao/', include('subscriptions.urls')),
     path('contato/', contact),  
+    path('palestrantes/<slug:slug>/', speaker_detail, name='speaker_detail'),
     path('admin/', admin.site.urls),
 ]

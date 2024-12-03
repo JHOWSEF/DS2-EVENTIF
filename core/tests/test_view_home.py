@@ -16,8 +16,7 @@ class HomeTest(TestCase):
         self.assertTemplateUsed(self.response, 'index.html')
 
     def test_link_subscription(self):
-        self.assertContains(
-            self.response, 'href="{}"'.format(r('subscriptions:new')))
+        self.assertContains(self.response, 'href={}'.format(r("subscriptions:new")))
         
 
     def test_speakers(self):
