@@ -3,6 +3,7 @@ from django.core import mail
 from django.core.mail import send_mail
 from contact.forms import ContactForm
 from contact.models import ContactModel
+from datetime import datetime
 
 class ContactGet(TestCase):
 
@@ -110,3 +111,26 @@ class ContactEmailPostValid(TestCase):
         for content in contents:
             with self.subTest():
                 self.assertIn(content, self.email.body)
+
+class ContactModelTest(TestCase):
+
+    def setUp(self):
+        self.obj = ContactModel(
+            name='José Filipe',
+            email='jfmarques0909.shadow@gmail.com',
+            phone='53-12345-6789',
+            message='mensagem'
+        )
+        self.obj.save()
+    
+    def test_create(self):
+        self.assertTrue(ContactModel.objects.exists())
+    
+    def test_created_at(self):
+        self.assertIsInstance(self.obj.created_at, datetime)
+    
+    def test_str(self):
+        self.assertEqual('José Filipe', str(self.obj))
+
+    def test_replied_default_False(self):
+        self.assertEqual(False, self.obj.is_response)
